@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseContext from "../Components/constext/FirebaseContext"
 import { Link, Routes, Route } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
-import { collection, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 import { auth,db } from "../firebase"
 import { getDoc } from 'firebase/firestore';
@@ -30,16 +30,13 @@ function Login({ setLogin }) {
                 const user = userCredential.user;
                 setLogin(false)
                 const citiesRef = collection(db, "users");
-                console.log(getDoc(citiesRef))
-                
+             
              
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
             });
-
-
 
     }
 
