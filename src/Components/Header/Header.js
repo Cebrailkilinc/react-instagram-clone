@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NewPost from "../Modal/NewPost";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillHome, AiOutlineHeart } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
 import { MdOutlineAddCircleOutline, MdOutlineExplore } from "react-icons/md"
@@ -10,6 +10,9 @@ import Profile from './Profile';
 function Header({setLogin}) {
 
     const [show, setShow ] = useState(false)
+
+    //Router
+    const navigate = useNavigate()
     
     const openModal = () =>{
         setShow(true )        
@@ -52,7 +55,7 @@ function Header({setLogin}) {
                     <Link to="/" >
                         <AiOutlineHeart />
                     </Link>
-                    <Profile setLogin={setLogin} />
+                    <Profile setLogin={()=>{navigate("/login")}} />
                 </div>
              
             </div>

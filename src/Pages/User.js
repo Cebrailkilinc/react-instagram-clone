@@ -18,8 +18,12 @@ function User() {
         nickname,
         setNickname,
         name,
-        surname
+        surname,
+        users
     } = useContext(FirebaseContext)
+
+    console.log(users[0].Name)
+
 
     const [border, setBorder] = useState('border-t-2')
     return (
@@ -34,10 +38,10 @@ function User() {
                         <button className='border p-1 text-xs rounded-md'>Profil Düzenle</button>
                         <MdOutlineChangeCircle />
                     </div>
-                    <div className='flex items-center gap-8 text-xs'>
+                    <div className='flex items-center gap-8 text-xs '>
                         <h1>6 gönderi</h1>
-                        <h1>536 takipçi</h1>
-                        <h1>756 takip</h1>
+                        <h1>takipçi:{users[0].follower}</h1>
+                        <h1>takip:{users[0].folow}</h1>
                     </div>
                     <div className='text-xs'>
                         <h1 className='font-bold '>{name +" "+ surname}</h1>

@@ -14,6 +14,7 @@ import { FirebaseProvider } from './Components/constext/FirebaseContext';
 
 
 function App() {
+  
  
   const [login, setLogin] = useState(true)
   
@@ -21,7 +22,8 @@ function App() {
     <BrowserRouter>
       <FirebaseProvider>
         <Routes>
-          <Route exact path='/*' element={login ? <Login setLogin={setLogin}/> : <Dasboard setLogin={setLogin} /> } />
+          <Route exact path='/*' element={ <Dasboard/> } />
+          <Route path='/login' element={<Login/>} />
           <Route path='/register' element={<Register />} />
         </Routes>
       </FirebaseProvider>

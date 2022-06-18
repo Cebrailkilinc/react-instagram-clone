@@ -13,18 +13,6 @@ import { useEffect } from 'react'
 function Profile({ setLogin }) {
 
   const [open, setOpen] = useState("hidden")
-  // useEffect(() => {
-  //   const closeDrop = (e) => {
-  //     if (e.path[0].tagName !== "BUTTON") {
-  //       setOpen("hidden")
-  //     }
-
-  //   }
-  //   document.body.addEventListener("click", closeDrop)
-  //   return () => document.body.removeEventListener("click", closeDrop)
-
-  // }, [])
-
 
   const show = () => {
     setOpen(open === "hidden" ? "visible " : "hidden")

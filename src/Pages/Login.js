@@ -5,48 +5,27 @@ import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebas
 import FirebaseContext from "../Components/constext/FirebaseContext"
 import { Link, Routes, Route } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 
 import { auth, db } from "../firebase"
 import { getDoc } from 'firebase/firestore';
 import { doc } from 'firebase/firestore';
+import { async } from '@firebase/util';
+import { useEffect } from 'react';
 
 
 
-function Login({ setLogin }) {
-    const { } = useContext(FirebaseContext)
-
-
-
-    const [error, setError] = useState(false)
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-
-
-    const handleLogin = (e) => {
-        e.preventDefault()
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                setLogin(false)
-                console.log(user.r)
-                const docRef = collection(db, "users");               
-                onSnapshot(docRef, (snapshot) => {
-                    console.log(snapshot.docs.map(doc => (doc.data())))
-                })
-                onAuthStateChanged(auth, (data)=>{
-                    console.log(data)
-                })
-              
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
-
-    }
-
+function Login() {
+    const {
+        email, setEmail,
+        password, setPassword,
+        error, setError,
+        name, setName,
+        surname, setSurname,
+        nickname, setNickname,
+        setLogin, login, post,
+        handleLogin
+    } = useContext(FirebaseContext)
 
 
     return (

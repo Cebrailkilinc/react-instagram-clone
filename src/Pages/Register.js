@@ -4,15 +4,15 @@ import { addDoc, collection, docs, getDocs, onSnapshot, doc, setDoc, query, wher
 
 import { Link } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
-
 import { auth,db } from "../firebase"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useContext } from 'react';
 import FirebaseContext from '../Components/constext/FirebaseContext';
 import { async } from '@firebase/util';
+import { useNavigate } from 'react-router-dom';
 
 
-function Register() {
+function Register() {    
 
     const {
         deneme,
@@ -30,13 +30,19 @@ function Register() {
             const user = userCredential.user;
             try {
                 const docRef = addDoc(collection(db, "users"), {
+                  uid:user.uid,               
                   Name: name,
                   Surname:surname,
+                  Nickname:nickname,
                   Email:email,
                   Password: password,
-                  Post:post
-                });              
+                  Post:post,
+                  folow:0,
+                  follower:0
+                })      
                 
+   
+              
               } catch (e) {
                 console.error("Error adding document: ", e);
               }
@@ -63,6 +69,7 @@ function Register() {
                         <input placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} className='border block w-64 mx-auto mt-2 text-xs p-1 outline-none' />
                         <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} className='border block mt-2 w-64 mx-auto text-xs p-1 outline-none' />
                         <button className='  bg-sky-600 mt-2 w-64 rounded-md text-white text-xs p-1' >Kayıt Ol</button>
+                        
 
                     </form>
                     <div className='flex items-center justify-center gap-2 text-xs my-auto mt-5 '>
@@ -80,7 +87,7 @@ function Register() {
                     </div>
                     <div className='flex items-center justify-center text-xs mt-5 border p-5 ' >
                         <h1>Hesabın varmı ?
-                            <Link to="/" ><span className='text-bold text-blue-600 cursor-pointer' >Giriş yap</span></Link>
+                            <Link to="/login" ><span className='text-bold text-blue-600 cursor-pointer' >Giriş yap</span></Link>
                         </h1>
                     </div>
                 </div>
