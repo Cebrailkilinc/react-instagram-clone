@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Register from './Register';
 import { useContext } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseContext from "../Components/constext/FirebaseContext"
 import { Link, Routes, Route } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-import { auth,db } from "../firebase"
+import { auth, db } from "../firebase"
 import { getDoc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 
 
 
@@ -29,9 +30,15 @@ function Login({ setLogin }) {
                 // Signed in 
                 const user = userCredential.user;
                 setLogin(false)
-                const citiesRef = collection(db, "users");
-             
-             
+                console.log(user.r)
+                const docRef = collection(db, "users");               
+                onSnapshot(docRef, (snapshot) => {
+                    console.log(snapshot.docs.map(doc => (doc.data())))
+                })
+                onAuthStateChanged(auth, (data)=>{
+                    console.log(data)
+                })
+              
             })
             .catch((error) => {
                 const errorCode = error.code;

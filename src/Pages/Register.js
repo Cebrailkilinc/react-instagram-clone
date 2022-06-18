@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { addDoc, collection, docs, getDocs, onSnapshot, doc, setDoc, query, where } from "firebase/firestore"
-import nextId from "react-id-generator"
-import { db } from "../firebase"
+
 
 import { Link } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
 
-import { auth } from "../firebase"
+import { auth,db } from "../firebase"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useContext } from 'react';
 import FirebaseContext from '../Components/constext/FirebaseContext';
