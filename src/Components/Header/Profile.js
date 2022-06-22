@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef,useContext } from 'react'
 import profil from '../../Data/profil'
+import FirebaseContext from '../constext/FirebaseContext'
 
 import { MdBookmarkBorder } from "react-icons/md"
 import { BiUserCircle } from "react-icons/bi"
@@ -10,8 +11,27 @@ import { useEffect } from 'react'
 
 
 
-function Profile({ setLogin }) {
-
+function Profile() {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    setError,
+    name,
+    setName,
+    surname,
+    setSurname,
+    nickname,
+    setNickname,
+    setLogin,
+    login, 
+    post,
+    handleLogin,
+    users
+} = useContext(FirebaseContext)
+  
   const [open, setOpen] = useState("hidden")
 
   const show = () => {
@@ -20,7 +40,7 @@ function Profile({ setLogin }) {
   return (
     <div  >
       <div>
-        <img onClick={show} className='w-6 h-6  rounded-full cursor-pointer ' src={profil[0].img} />
+        <img onClick={show} className='w-6 h-6  rounded-full cursor-pointer ' src={ users ?  users[0].Photo : ""}/>
       </div>
       <div className={`${open}  absolute bg-white right-64 top-10 text-xs border border-solid rounded-md border-gray-200`}>
         <div className='p-3'>
@@ -42,7 +62,7 @@ function Profile({ setLogin }) {
           </div>
         </div>
         <div className='flex items-cente cursor-pointer py-1 hover:bg-slate-50r border-t'>
-          <h6 onClick={() => {  setLogin(true) }} className='p-2 ml-2'>Çıkış Yap</h6>
+          <h6 onClick={() => {setLogin(false) }} className='p-2 ml-2'>Çıkış Yap</h6>
         </div>
       </div>
     </div>

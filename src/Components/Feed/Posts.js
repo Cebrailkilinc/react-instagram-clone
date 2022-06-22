@@ -11,7 +11,7 @@ function Posts() {
 
 
    //Firebase connect
-   const postCollectionRef = collection(db, "Posts")
+   const postCollectionRef = collection(db, "posts")
    useEffect(() => {      
      onSnapshot(postCollectionRef,(snapshot)=>{
          setPost(snapshot.docs.map((doc)=>({...doc.data(),id:doc.id})))
@@ -24,7 +24,7 @@ function Posts() {
 
       {/* Story data was used as post data */}
       {
-        posts.map((item, i)=>{
+        story.map((item, i)=>{
             return <Post key={i} name={item.name} img={item.img} id={item.id} />
         })
       }    

@@ -39,7 +39,6 @@ function Header({setLogin}) {
                         className='border-none focus:ring-0 outline-none bg-gray-200 hidden md:block rounded-md w-60'                        
                      />
                 </div>
-
                 {/*RIGHT */}
                 <div className='flex space-x-5 text-2xl '>
                     <Link to="/"  >

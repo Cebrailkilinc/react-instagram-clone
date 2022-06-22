@@ -21,19 +21,19 @@ export const FirebaseProvider = ({ children }) => {
   const [login, setLogin] = useState(false)
   const [post, setPost] = useState("")
   const [users, setUsers] = useState(null)
+  const [uids, setUid] = useState("")
 
-  const navigate = useNavigate();
-
-
-
+  const navigate = useNavigate()
+  
   const handleLogin = (e) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        setLogin(false)
         navigate("/")
+        setLogin(true)
+        console.log(user.uid)       
 
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         onSnapshot(q, (snapshot) => {
@@ -49,22 +49,30 @@ export const FirebaseProvider = ({ children }) => {
         const errorMessage = error.message;
       });
   }
-  console.log(users)
-  
-
 
   const values = {
-    email, setEmail,
-    password, setPassword,
-    error, setError,
-    name, setName,
-    surname, setSurname,
-    nickname, setNickname, setLogin, login, post, handleLogin,users
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    setError,
+    name,
+    setName,
+    surname,
+    setSurname,
+    nickname,
+    setNickname,
+    setLogin,
+    login,
+    post,
+    handleLogin,
+    users,
+    uids,
+    login
   }
-
 
   return <FirebaseContext.Provider value={values} >{children}</FirebaseContext.Provider>
 
 }
-
 export default FirebaseContext;

@@ -12,7 +12,7 @@ function Dasboard({ setLogin }) {
         <>
             <Header setLogin={setLogin} />
             <Routes>
-                <Route path="*" element={<Feed />} />
+                <Route path="/*" element={<Feed />} />
                 <Route path="/message" element={<Message />} />
                 <Route path="/user" element={<User/>} />               
             </Routes>

@@ -7,8 +7,16 @@ import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi"
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiHappyAlt } from "react-icons/bi";
+import { addDoc, collection } from 'firebase/firestore'
+
+import {db} from "../../firebase"
 
 function Comment({ setCommentShow, setOptionShow, img, name }) {
+
+
+
+
+
     return (
         <>
             <div className='fixed inset-0 bg-black bg-opacity-70   flex items-center justify-center  z-50' >

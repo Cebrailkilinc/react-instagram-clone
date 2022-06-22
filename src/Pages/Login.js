@@ -17,13 +17,21 @@ import { useEffect } from 'react';
 
 function Login() {
     const {
-        email, setEmail,
-        password, setPassword,
-        error, setError,
-        name, setName,
-        surname, setSurname,
-        nickname, setNickname,
-        setLogin, login, post,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        error,
+        setError,
+        name,
+        setName,
+        surname,
+        setSurname,
+        nickname,
+        setNickname,
+        setLogin,
+        login,
+        post,
         handleLogin
     } = useContext(FirebaseContext)
 

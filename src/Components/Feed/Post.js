@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Comment from '../Modal/Comment';
 import Options from '../Modal/Options';
+import FirebaseContext from '../constext/FirebaseContext';
+
 
 //React Icons
 import { FiMoreHorizontal } from "react-icons/fi"
@@ -10,12 +12,55 @@ import { BiBookmark } from "react-icons/bi"
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi"
 
-
-
-function Post({ img, id, name }) {
+function Post({ img, }) {
+    const {
+        email,
+        setEmail,
+        password,
+        setPassword,
+        error,
+        setError,
+        name,
+        setName,
+        surname,
+        setSurname,
+        nickname,
+        setNickname,
+        setLogin,
+        login, 
+        post,
+        handleLogin,
+        users
+    } = useContext(FirebaseContext)
     const [showComment, setCommentShow] = useState(false)
     const [showOption, setOptionShow] = useState(false)
+    const [numberOfLike, setNumberOfLike] = useState(0)
+    const [likeButton, setLikeButton] = useState(true)
+    const [commentValue, setCommentValue] = useState("")
 
+    const [commentStorage, setCommentStorage] = useState([
+        {
+            nickname: "deneme",
+            comment: "lorem ipsum dolor"
+
+        }
+    ])
+
+
+    const handleLikeButton = () => {
+        setLikeButton(likeButton ? false : true)
+        setNumberOfLike(likeButton ? numberOfLike + 1 : numberOfLike - 1)
+
+    }
+
+    const addComment = (e) => {
+        e.preventDefault()
+        let newComment = { nickname:nickname, comment:commentValue}
+        let arr = commentStorage.concat(newComment)
+        setCommentStorage(arr)
+        setCommentValue("")
+      
+    }
 
     if (showOption === true) {
         return <Options setOptionShow={setOptionShow} />
@@ -31,15 +76,12 @@ function Post({ img, id, name }) {
         setOptionShow(true)
     }
 
-    
-
-
     return (
         <div className='items-center mt-5 border border-solid border-gray-200 bg-white rounded-lg '>
             {/* Header */}
             <div className='flex items-center justify-between p-4'>
                 <img src={img} className="w-10 h-10 border border-red-500 rounded-full" />
-                <h1 className='flex-1 ml-2 text-xs' >{name}</h1>
+                <h1 className='flex-1 ml-2 text-xs' >{ users ?  users[0].Nickname : ""}</h1>
                 <FiMoreHorizontal className='cursor-pointer' onClick={openOptions} />
             </div>
             {/* Post img */}
@@ -50,7 +92,7 @@ function Post({ img, id, name }) {
             {/* Post Coption */}
             <div className='flex items-center justify-between p-4 text-xl'>
                 <div className='flex items-center cursor-pointer  space-x-3 '>
-                    <AiOutlineHeart />
+                    <AiOutlineHeart onClick={handleLikeButton} />
                     <FaRegComment onClick={openComment} />
                     <FiSend />
                 </div>
@@ -60,15 +102,18 @@ function Post({ img, id, name }) {
             </div>
             {/*Nymber of like */}
             <div className='flex items-center pl-4 text-xs'>
-                <p>42 beğenme</p>
+                <p>{numberOfLike} beğenme</p>
             </div>
 
             {/* Comments */}
-            <div className='items-center p-4 text-xs'>
-                <div><a href='#'>{name}</a>: çok güzel bir foto </div>
-                <div><a href='#'>{name}</a>: çok güzel bir foto </div>
-                <div><a href='#'>{name}</a>: çok güzel bir foto </div>
-                <div><a href='#'>{name}</a>: çok güzel bir foto </div>
+            <div className='items-center p-4 text-xs'>              
+                    {
+                        commentStorage.map((item, i) => {
+                         return <div key={i}><a href='#'>{ users ?  users[0].Nickname : ""}</a>: {item.comment} </div>
+
+                        })
+                    }              
+                
             </div>
             <form className='flex items-center justify-between p-4 ' >
                 <BiHappyAlt className='text-xl ' />
@@ -76,8 +121,10 @@ function Post({ img, id, name }) {
                     type="text"
                     placeholder='add comment'
                     className='border-none focus:ring-0 outline-none flex-1 ml-2 text-xxs'
+                    onChange={(e)=>{setCommentValue( e.target.value)}}
+                    value={commentValue}
                 />
-                <button className='border-none text-blue-600 text-xs' >Paylaş</button>
+                <button onClick={addComment} className='border-none text-blue-600 text-xs' >Paylaş</button>
             </form>
         </div>
     )

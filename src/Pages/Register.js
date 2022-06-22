@@ -4,7 +4,7 @@ import { addDoc, collection, docs, getDocs, onSnapshot, doc, setDoc, query, wher
 
 import { Link } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
-import { auth,db } from "../firebase"
+import { auth, db } from "../firebase"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useContext } from 'react';
 import FirebaseContext from '../Components/constext/FirebaseContext';
@@ -12,51 +12,59 @@ import { async } from '@firebase/util';
 import { useNavigate } from 'react-router-dom';
 
 
-function Register() {    
+function Register() {
 
     const {
         deneme,
-        handleRegister, email, setEmail,
-        password, setPassword,
-        error, setError,
-        name, setName, surname, setSurname, nickname, setNickname,post
+        handleRegister,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        error,
+        setError,
+        name,
+        setName,
+        surname,
+        setSurname,
+        nickname,
+        setNickname,
+        post,
     } = useContext(FirebaseContext)
 
-
-    const createAccount =(e)=>{
+    const createAccount = (e) => {
         e.preventDefault()
         createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {           
-            const user = userCredential.user;
-            try {
-                const docRef = addDoc(collection(db, "users"), {
-                  uid:user.uid,               
-                  Name: name,
-                  Surname:surname,
-                  Nickname:nickname,
-                  Email:email,
-                  Password: password,
-                  Post:post,
-                  folow:0,
-                  follower:0
-                })      
-                
-   
-              
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-                        
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-          });
+            .then((userCredential) => {
+                const user = userCredential.user;
+                try {
+                    const frankDocRef = doc(db, "users", nickname);
+                    setDoc(frankDocRef, {
+                        uid: user.uid,
+                        Name: name,
+                        Surname: surname,
+                        Nickname: nickname,
+                        Email: email,
+                        Password: password,
+                        Photo:"https://picsum.photos/seed/picsum/200/300",
+                        Post: {
+                            image: "",
+                            description: "",
+                            comment: ""
+                        },
+                        folow: 0,
+                        follower: 0
+
+                    });
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
     }
-
-        
-
     return (
         <div className="grid grid-cols-6 gap-4 text-center ">
             <div className="col-start-2 col-span-4 flex justify-center items-center">
@@ -69,8 +77,6 @@ function Register() {
                         <input placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} className='border block w-64 mx-auto mt-2 text-xs p-1 outline-none' />
                         <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} className='border block mt-2 w-64 mx-auto text-xs p-1 outline-none' />
                         <button className='  bg-sky-600 mt-2 w-64 rounded-md text-white text-xs p-1' >Kayıt Ol</button>
-                        
-
                     </form>
                     <div className='flex items-center justify-center gap-2 text-xs my-auto mt-5 '>
                         <span className='border w-24'></span>
@@ -87,7 +93,7 @@ function Register() {
                     </div>
                     <div className='flex items-center justify-center text-xs mt-5 border p-5 ' >
                         <h1>Hesabın varmı ?
-                            <Link to="/login" ><span className='text-bold text-blue-600 cursor-pointer' >Giriş yap</span></Link>
+                            <Link to="/" ><span className='text-bold text-blue-600 cursor-pointer' >Giriş yap</span></Link>
                         </h1>
                     </div>
                 </div>
@@ -95,5 +101,4 @@ function Register() {
         </div>
     )
 }
-
 export default Register

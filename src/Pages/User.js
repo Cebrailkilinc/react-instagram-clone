@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import profil from '../Data/profil'
 import FirebaseContext from '../Components/constext/FirebaseContext'
+import FileViewer from "react-file-viewer"
+
 import { MdBookmarkBorder } from "react-icons/md"
 import { MdOutlineChangeCircle } from "react-icons/md"
 import { useState } from 'react'
@@ -22,19 +24,17 @@ function User() {
         users
     } = useContext(FirebaseContext)
 
-    console.log(users[0].Name)
-
-
     const [border, setBorder] = useState('border-t-2')
+    
     return (
         <div className='mx-auto max-w-2xl grid grid-rows-2 mt-5 gap-10'>
             <div className='grid grid-cols-3'>
-                <div className='col-span-1'>
-                    <img className='w-28 h-28 rounded-full' src={name} />
+                <div className='col-span-1 rounded-full'>
+                    <img className='w-28 h-28 rounded-full' src={users[0].Photo} />
                 </div>
                 <div className='col-span-2 grid grid-rows-3 gap-3'>
                     <div className='flex items-center gap-5'>
-                        <h1>{nickname}</h1>
+                        <h1>{users[0].Nickname}</h1>
                         <button className='border p-1 text-xs rounded-md'>Profil Düzenle</button>
                         <MdOutlineChangeCircle />
                     </div>
@@ -44,14 +44,17 @@ function User() {
                         <h1>takip:{users[0].folow}</h1>
                     </div>
                     <div className='text-xs'>
-                        <h1 className='font-bold '>{name +" "+ surname}</h1>
+                        <h1 className='font-bold '>{users[0].Name + " " + users[0].Surname}</h1>
                         <a className='text-blue-400' href='www.twitter.com/elonmusk'>www.twitter.com/elonmusk</a>
                     </div>
                 </div>
             </div>
             <div className='border-t grid grid-rows-2 justify-center'>
                 <div className='flex gap-x-10 text-xs'>
-                    <div><h1 className={border}>KAYDEDİLENLER</h1></div>
+                    <div><h1 className={border}>KAYDEDİLENLER</h1>
+                     
+
+                    </div>
                     <div><h1 className={border}>KAYDEDİLENLER</h1></div>
                     <div><h1 className={border}>ETİKETLENENLER</h1></div>
                 </div>
