@@ -39,43 +39,39 @@ function Post({ img, nickName, profileImg }) {
     const [numberOfLike, setNumberOfLike] = useState(0)
     const [likeButton, setLikeButton] = useState(true)
     const [commentValue, setCommentValue] = useState("")
-    const [commentStorage, setCommentStorage] = useState([
-        {
-            nickname: "deneme",
-            comment: "lorem ipsum dolor"
-        }
-    ])
+    const [commentStorage, setCommentStorage] = useState([{nickname: "deneme", comment: "lorem ipsum dolor"}])
 
     const handleLikeButton = () => {
         setLikeButton(likeButton ? false : true)
-        setNumberOfLike(likeButton ? numberOfLike + 1 : numberOfLike - 1)
-
+        setNumberOfLike(likeButton ? numberOfLike + 1 : numberOfLike - 1)       
     }
 
+   
+    // Add comment functions
     const addComment = (e) => {
         e.preventDefault()
         let newComment = { nickname: nickname, comment: commentValue }
         let arr = commentStorage.concat(newComment)
         setCommentStorage(arr)
         setCommentValue("")
-
     }
 
+
+    // This condition and functions are shows options of post
     if (showOption === true) {
         return <Options setOptionShow={setOptionShow} />
     }
-
-    if (showComment === true) {
-        return <Comment name={name} img={img} setOptionShow={setOptionShow} setCommentShow={setCommentShow} />
-
-    }
-
-    const openComment = () => {
-        setCommentShow(true)
-    }
-
     const openOptions = () => {
         setOptionShow(true)
+    }
+
+
+    // This condition and functions are used to open comment modal
+    if (showComment === true) {
+        return <Comment profileImg={profileImg} nickName={nickName} numberOfLike={numberOfLike} commentStorage={commentStorage} addComment={addComment} setCommentValue={setCommentValue} likeButton={likeButton} handleLikeButton={handleLikeButton}  name={name} img={img} setOptionShow={setOptionShow} setCommentShow={setCommentShow} />
+    }
+    const openComment = () => {
+        setCommentShow(true)
     }
 
 
