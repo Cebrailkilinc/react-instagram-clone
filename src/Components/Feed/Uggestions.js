@@ -24,7 +24,7 @@ function Uggestions() {
                 {
                     uggestions.map((item, i) => {
                         return (
-                            <div key={i} className='flex items-center justify-between text-xs mt-1 ' >
+                            <div key={i} className='flex items-center justify-between text-xxs font-sans font-semibold mt-1 ' >
                                 <img className='w-10 h-10 rounded-full' src={item.img} />
                                 <h1 className='flex-1 ml-3' >{item.name}</h1>
                                 <button onClick={handleClick} className='border-none text-sky-600 ml-12' >Takip Et</button>
@@ -32,7 +32,7 @@ function Uggestions() {
                         )
                     })
                 }
-            </div>
+            </div>      
 
         </div>
     )

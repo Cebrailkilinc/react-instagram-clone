@@ -36,7 +36,7 @@ function User() {
                     <div className='flex items-center gap-5'>
                         <h1>{users[0].Nickname}</h1>
                         <button className='border p-1 text-xs rounded-md'>Profil Düzenle</button>
-                        <MdOutlineChangeCircle />
+                        <MdOutlineChangeCircle onClick={()=>{console.log("çalışıyor")}} />
                     </div>
                     <div className='flex items-center gap-8 text-xs '>
                         <h1>6 gönderi</h1>
@@ -59,7 +59,7 @@ function User() {
                     <div><h1 className={border}>ETİKETLENENLER</h1></div>
                 </div>
                 <div>
-                    asdas
+                    
                 </div>
             </div>
         </div>

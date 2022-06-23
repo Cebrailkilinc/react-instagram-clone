@@ -1,19 +1,20 @@
 import React,{useState, useEffect} from 'react'
-import story from '../../Data/storyData'
 import Post from './Post'
+
+//Firebase functions
 import { db } from "../../firebase"
-import { collection, docs, getDocs,onSnapshot } from "firebase/firestore"
+import { collection, docs, getDocs,onSnapshot, orderBy, query } from "firebase/firestore"
 
 
 function Posts() {
    //post State
    const [posts, setPost] = useState([])
 
-
-   //Firebase connect
+   //Firebase connect and get post datas
    const postCollectionRef = collection(db, "posts")
+   const q = query(postCollectionRef, orderBy("time","desc"))
    useEffect(() => {      
-     onSnapshot(postCollectionRef,(snapshot)=>{
+     onSnapshot(q, (snapshot)=>{
          setPost(snapshot.docs.map((doc)=>({...doc.data(),id:doc.id})))
      })   
    }, [])
@@ -21,11 +22,10 @@ function Posts() {
   
   return (
     <div className='mt-5  '>
-
       {/* Story data was used as post data */}
       {
-        story.map((item, i)=>{
-            return <Post key={i} name={item.name} img={item.img} id={item.id} />
+        posts.map((item, i)=>{
+            return <Post key={i} name={item.name} img={item.image} profileImg={item.profileImg} nickName={item.nickname} id={item.id} />
         })
       }    
     </div>

@@ -22,9 +22,10 @@ export const FirebaseProvider = ({ children }) => {
   const [post, setPost] = useState("")
   const [users, setUsers] = useState(null)
   const [uids, setUid] = useState("")
+  const [statement, setStatement] = useState("")
 
   const navigate = useNavigate()
-  
+
   const handleLogin = (e) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
@@ -33,7 +34,7 @@ export const FirebaseProvider = ({ children }) => {
         const user = userCredential.user;
         navigate("/")
         setLogin(true)
-        console.log(user.uid)       
+        console.log(user.uid)
 
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         onSnapshot(q, (snapshot) => {
@@ -67,6 +68,8 @@ export const FirebaseProvider = ({ children }) => {
     login,
     post,
     handleLogin,
+    statement,
+    setStatement,
     users,
     uids,
     login

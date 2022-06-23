@@ -4,25 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiFillHome, AiOutlineHeart } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
 import { MdOutlineAddCircleOutline, MdOutlineExplore } from "react-icons/md"
-import {CgAddR} from "react-icons/cg"
+import { CgAddR } from "react-icons/cg"
 import Profile from './Profile';
 
-function Header({setLogin}) {
+function Header({ setLogin }) {
 
-    const [show, setShow ] = useState(false)
+    const [show, setShow] = useState(false)
 
     //Router
     const navigate = useNavigate()
-    
-    const openModal = () =>{
-        setShow(true )        
+
+    const openModal = () => {
+        setShow(true)
     }
 
-    if(show === true)
-    {
-        return <NewPost setShow={setShow} />
+    if (show === true) {
+        return <NewPost  setShow={setShow} />
     }
-     
+
     return (
         <header className='bg-white shadow-lg sticky top-0 z-50 border-b-1 '>
             <div className='container mx-auto max-w-2xl flex justify-between py-3'>
@@ -36,27 +35,27 @@ function Header({setLogin}) {
                 <div>
                     <input
                         placeholder='Ara'
-                        className='border-none focus:ring-0 outline-none bg-gray-200 hidden md:block rounded-md w-60'                        
-                     />
+                        className='border-none focus:ring-0 outline-none bg-gray-200 hidden md:block rounded-md w-60'
+                    />
                 </div>
                 {/*RIGHT */}
-                <div className='flex space-x-5 text-2xl '>
+                <div className='flex space-x-5 text-2xl text-neutral-800'>
                     <Link to="/"  >
                         <AiFillHome />
                     </Link>
                     <Link to="/message" >
                         <RiMessengerLine />
-                    </Link>          
-                    <CgAddR onClick={openModal} className='cursor-pointer'/>                     
+                    </Link>
+                    <CgAddR onClick={openModal} className='cursor-pointer' />
                     <Link to="/" >
                         <MdOutlineExplore />
                     </Link>
                     <Link to="/" >
                         <AiOutlineHeart />
                     </Link>
-                    <Profile setLogin={()=>{navigate("/login")}} />
+                    <Profile setLogin={() => { navigate("/login") }} />
                 </div>
-             
+
             </div>
         </header>
     )

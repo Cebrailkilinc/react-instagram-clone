@@ -1,4 +1,4 @@
-import React, { useState, useRef,useContext } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import profil from '../../Data/profil'
 import FirebaseContext from '../constext/FirebaseContext'
 
@@ -7,7 +7,7 @@ import { BiUserCircle } from "react-icons/bi"
 import { AiOutlineSetting } from "react-icons/ai"
 import { MdOutlineChangeCircle } from "react-icons/md"
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+
 
 
 
@@ -26,23 +26,31 @@ function Profile() {
     nickname,
     setNickname,
     setLogin,
-    login, 
+    login,
     post,
     handleLogin,
     users
-} = useContext(FirebaseContext)
-  
-  const [open, setOpen] = useState("hidden")
+  } = useContext(FirebaseContext)
 
-  const show = () => {
+  // Open dropdown menu
+  const [open, setOpen] = useState("hidden")
+  const showDropdownMenu = () => {
     setOpen(open === "hidden" ? "visible " : "hidden")
   }
+  
+
+  // Logout functions
+  const logout = () => {
+    setLogin(false)
+    setOpen(open === "hidden" ? "visible " : "hidden")
+  }
+
   return (
-    <div  >
+    <div>
       <div>
-        <img onClick={show} className='w-6 h-6  rounded-full cursor-pointer ' src={ users ?  users[0].Photo : ""}/>
+        <img onClick={showDropdownMenu} className='w-6 h-6  rounded-full cursor-pointer ' src={users ? users[0].Photo : ""} />
       </div>
-      <div className={`${open}  absolute bg-white right-64 top-10 text-xs border border-solid rounded-md border-gray-200`}>
+      <div className={`${open} absolute bg-white md:right-20 lg:right-60 right-2 top-10 text-xs border border-solid rounded-md border-gray-200`}>
         <div className='p-3'>
           <div className='cursor-pointer items-center py-1 hover:bg-slate-50 flex gap-4'>
             <BiUserCircle />
@@ -58,11 +66,11 @@ function Profile() {
           </div>
           <div className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4 '>
             <MdOutlineChangeCircle />
-            <h6>Hesap Değiştir</h6>
+            <h6 >Hesap Değiştir</h6>
           </div>
         </div>
         <div className='flex items-cente cursor-pointer py-1 hover:bg-slate-50r border-t'>
-          <h6 onClick={() => {setLogin(false) }} className='p-2 ml-2'>Çıkış Yap</h6>
+          <h6 onClick={logout} className='p-2 ml-2'>Çıkış Yap</h6>
         </div>
       </div>
     </div>
