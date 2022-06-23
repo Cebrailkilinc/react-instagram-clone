@@ -54,10 +54,7 @@ function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeBut
                                     return <div key={i}><a className='font-semibold' href='#'>{users ? users[0].Nickname : ""}</a>: {item.comment}</div>
                                 })
                             }
-
-
                         </div>
-
                         <div className='fixed bottom-12 border-t ml-2'>
                             <div className=' flex items-center justify-between  p-4 text-xl'>
                                 <div className='flex items-center cursor-pointer  space-x-3 '>
@@ -72,7 +69,6 @@ function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeBut
                             <div className='flex items-center pl-4 text-xs'>
                                 <p className='font-semibold text-neutral-800'>{numberOfLike} beğenme</p>
                             </div>
-
                             <form className='flex items-center justify-between p-4'>
                                 <div >
                                     <input
