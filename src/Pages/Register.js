@@ -34,6 +34,8 @@ function Register() {
         post,
     } = useContext(FirebaseContext)
 
+    console.log("deneme")
+
     const navigate = useNavigate()
     const createAccount = (e) => {
         e.preventDefault()
