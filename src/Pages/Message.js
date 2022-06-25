@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import uggetions from '../Data/uggestion'
 import story from '../Data/storyData'
-
+// React Icons
 import { BsPencilSquare } from "react-icons/bs"
 import { AiOutlineHeart } from "react-icons/ai"
 import { BsImage } from "react-icons/bs"
 import { MdOutlineTagFaces } from "react-icons/md"
-import { useEffect } from 'react'
 
 function Message() {
     const [profile, setProfile] = useState({

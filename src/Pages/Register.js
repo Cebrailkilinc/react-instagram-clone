@@ -1,37 +1,28 @@
-import React, { useState } from 'react'
-import { addDoc, collection, docs, getDocs, onSnapshot, doc, setDoc, query, where } from "firebase/firestore"
-
+import React, { useContext } from 'react'
+import {doc, setDoc} from "firebase/firestore"
 
 import { Link } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
 import { auth, db } from "../firebase"
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useContext } from 'react';
+import { createUserWithEmailAndPassword} from "firebase/auth";
 import FirebaseContext from '../Components/constext/FirebaseContext';
-import { async } from '@firebase/util';
 import { useNavigate } from 'react-router-dom';
-
-
 
 
 function Register() {
 
-    const {
-        deneme,
-        handleRegister,
+    const {      
         email,
         setEmail,
         password,
         setPassword,
-        error,
-        setError,
+        error,     
         name,
         setName,
         surname,
         setSurname,
         nickname,
         setNickname,
-        post,
     } = useContext(FirebaseContext)
 
 

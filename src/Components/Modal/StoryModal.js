@@ -1,9 +1,8 @@
-import React from 'react'
-import story from '../../Data/storyData'
-
 import { useState } from 'react'
+
+// React Icons
 import { GrClose } from "react-icons/gr"
-import Stories from "react-insta-stories"
+
 
 
 

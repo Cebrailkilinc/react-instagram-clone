@@ -1,16 +1,8 @@
 import React, { useState } from 'react'
-import Register from './Register';
 import { useContext } from 'react';
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import FirebaseContext from "../Components/constext/FirebaseContext"
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaFacebookSquare } from "react-icons/fa"
-import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
-
-import { auth, db } from "../firebase"
-import { getDoc } from 'firebase/firestore';
-import { doc } from 'firebase/firestore';
-import { async } from '@firebase/util';
 import { useEffect } from 'react';
 
 
@@ -21,17 +13,7 @@ function Login() {
         setEmail,
         password,
         setPassword,
-        error,
-        setError,
-        name,
-        setName,
-        surname,
-        setSurname,
-        nickname,
-        setNickname,
-        setLogin,
-        login,
-        post,
+        error,     
         handleLogin,
     } = useContext(FirebaseContext)
 

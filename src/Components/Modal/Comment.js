@@ -12,26 +12,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillHeartFill } from "react-icons/bs"
 
 
-function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeButton, setCommentValue, addComment, commentStorage,numberOfLike,nickName,profileImg }) {
-    const {
-        email,
-        setEmail,
-        password,
-        setPassword,
-        error,
-        setError,
-        name,
-        setName,
-        surname,
-        setSurname,
-        nickname,
-        setNickname,
-        setLogin,
-        login,
-        post,
-        handleLogin,
-        users, statement
-    } = useContext(FirebaseContext)
+function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeButton, setCommentValue, addComment, commentStorage, numberOfLike, nickName, profileImg,statement }) {
+    const { users } = useContext(FirebaseContext)
+
     return (
         <>
             <div className='fixed inset-0 bg-black bg-opacity-70   flex items-center justify-center  z-50' >
@@ -48,7 +31,12 @@ function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeBut
                             <h1 className='flex-1 ml-2 text-xs' >{nickName}</h1>
                             <FiMoreHorizontal onClick={() => setOptionShow(true)} />
                         </div>
-                        <div className='items-center p-4 text-xs justify-center  '>
+                        <div className='items-center p-4 text-xs justify-center'>
+                            <div className='flex items-center gap-3' >
+                                <img src={profileImg} className="w-6 h-6 border border-red-500 rounded-full" />
+                                <p>{statement ? nickName + " " + statement : null }</p>
+                            </div>
+
                             {
                                 commentStorage.map((item, i) => {
                                     return <div key={i}><a className='font-semibold' href='#'>{users ? users[0].Nickname : ""}</a>: {item.comment}</div>

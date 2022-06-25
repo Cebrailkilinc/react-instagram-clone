@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import NewPost from "../Modal/NewPost";
+import Profile from './Profile';
+
+// React Icons
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillHome, AiOutlineHeart } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
-import { MdOutlineAddCircleOutline, MdOutlineExplore } from "react-icons/md"
+import { MdOutlineExplore } from "react-icons/md"
 import { CgAddR } from "react-icons/cg"
-import Profile from './Profile';
+
 
 function Header({ setLogin }) {
 

@@ -12,41 +12,25 @@ import { BiHappyAlt } from "react-icons/bi";
 import { BiBookmark } from "react-icons/bi"
 import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi"
-import {BsFillHeartFill} from "react-icons/bs"
+import { BsFillHeartFill } from "react-icons/bs"
 
-function Post({ img, nickName, profileImg }) {
-    const {
-        email,
-        setEmail,
-        password,
-        setPassword,
-        error,
-        setError,
-        name,
-        setName,
-        surname,
-        setSurname,
-        nickname,
-        setNickname,
-        setLogin,
-        login,
-        post,
-        handleLogin,
-        users, statement
-    } = useContext(FirebaseContext)
+function Post({ img, nickName, profileImg, statement }) {
+    const { name, nickname, users } = useContext(FirebaseContext)
+
     const [showComment, setCommentShow] = useState(false)
     const [showOption, setOptionShow] = useState(false)
     const [numberOfLike, setNumberOfLike] = useState(0)
     const [likeButton, setLikeButton] = useState(true)
     const [commentValue, setCommentValue] = useState("")
-    const [commentStorage, setCommentStorage] = useState([{nickname: "deneme", comment: "lorem ipsum dolor"}])
+    const [commentStorage, setCommentStorage] = useState([{ nickname: "deneme", comment: "lorem ipsum dolor" }])
 
+    // Click Like Button Functions
     const handleLikeButton = () => {
         setLikeButton(likeButton ? false : true)
-        setNumberOfLike(likeButton ? numberOfLike + 1 : numberOfLike - 1)       
+        setNumberOfLike(likeButton ? numberOfLike + 1 : numberOfLike - 1)
     }
 
-   
+
     // Add comment functions
     const addComment = (e) => {
         e.preventDefault()
@@ -68,7 +52,7 @@ function Post({ img, nickName, profileImg }) {
 
     // This condition and functions are used to open comment modal
     if (showComment === true) {
-        return <Comment profileImg={profileImg} nickName={nickName} numberOfLike={numberOfLike} commentStorage={commentStorage} addComment={addComment} setCommentValue={setCommentValue} likeButton={likeButton} handleLikeButton={handleLikeButton}  name={name} img={img} setOptionShow={setOptionShow} setCommentShow={setCommentShow} />
+        return <Comment statement={statement} profileImg={profileImg} nickName={nickName} numberOfLike={numberOfLike} commentStorage={commentStorage} addComment={addComment} setCommentValue={setCommentValue} likeButton={likeButton} handleLikeButton={handleLikeButton} name={name} img={img} setOptionShow={setOptionShow} setCommentShow={setCommentShow} />
     }
     const openComment = () => {
         setCommentShow(true)
@@ -92,7 +76,7 @@ function Post({ img, nickName, profileImg }) {
 
             <div className='flex items-center justify-between p-4 text-xl'>
                 <div className='flex items-center cursor-pointer text-slate-800  space-x-3 '>
-                   { likeButton ? <AiOutlineHeart onClick={handleLikeButton} /> : <BsFillHeartFill color='red' onClick={handleLikeButton}/>} 
+                    {likeButton ? <AiOutlineHeart onClick={handleLikeButton} /> : <BsFillHeartFill color='red' onClick={handleLikeButton} />}
                     <FaRegComment onClick={openComment} />
                     <FiSend />
                 </div>
@@ -100,11 +84,16 @@ function Post({ img, nickName, profileImg }) {
                     <BiBookmark />
                 </div>
             </div>
+            {/* Description */}
+            <div className='flex items-center pl-4 text-xs gap-2'>
+                <span className='font-bold'>{statement ? nickName : ""}</span>
+                <p className='font-semibold text-neutral-800'>{statement} </p>
+            </div>
             {/*Nymber of like */}
             <div className='flex items-center pl-4 text-xs'>
                 <p className='font-semibold text-neutral-800'>{numberOfLike} beğenme</p>
             </div>
-          
+
 
             {/* Comments */}
             <div className='items-center p-4 text-xs'>

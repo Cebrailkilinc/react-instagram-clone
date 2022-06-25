@@ -1,12 +1,11 @@
 import React from 'react'
-import { useRef } from 'react'
-import { useState } from 'react'
 import uggestions from "../../Data/uggestion"
 
 
 function Uggestions() {
 
     const handleClick = (event) => {
+
         if (event.target.innerText === "Takip") {
             event.target.innerText = "Takip Et"
         }else{
@@ -32,8 +31,7 @@ function Uggestions() {
                         )
                     })
                 }
-            </div>      
-
+            </div>   
         </div>
     )
 }
