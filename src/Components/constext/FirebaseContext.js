@@ -13,7 +13,7 @@ const FirebaseContext = createContext()
 export const FirebaseProvider = ({ children }) => {
 
   const [error, setError] = useState(false)
-  const [email, setEmail] = useState("cebrail@gmail.com")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
   const [surname, setSurname] = useState("")
@@ -23,10 +23,12 @@ export const FirebaseProvider = ({ children }) => {
   const [users, setUsers] = useState(null)
   const [uids, setUid] = useState("")
   const [statement, setStatement] = useState("")
+ 
 
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
+  
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -48,6 +50,8 @@ export const FirebaseProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log( errorCode + errorMessage)
+        alert("Geçersiz Kullanıcı Adı veya Şifre ")
       });
   }
 
@@ -69,7 +73,7 @@ export const FirebaseProvider = ({ children }) => {
     post,
     handleLogin,
     statement,
-    setStatement,
+    setStatement,     
     users,
     uids,
     login

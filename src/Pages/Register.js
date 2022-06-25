@@ -12,6 +12,8 @@ import { async } from '@firebase/util';
 import { useNavigate } from 'react-router-dom';
 
 
+
+
 function Register() {
 
     const {
@@ -32,6 +34,7 @@ function Register() {
         post,
     } = useContext(FirebaseContext)
 
+    const navigate = useNavigate()
     const createAccount = (e) => {
         e.preventDefault()
         createUserWithEmailAndPassword(auth, email, password)
@@ -56,6 +59,7 @@ function Register() {
                         follower: 0
 
                     });
+                    navigate("/")
                 } catch (e) {
                     console.error("Error adding document: ", e);
                 }

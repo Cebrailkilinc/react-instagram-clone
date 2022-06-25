@@ -32,8 +32,22 @@ function Login() {
         setLogin,
         login,
         post,
-        handleLogin
+        handleLogin,
     } = useContext(FirebaseContext)
+
+    const [opacity, setOpacity] = useState("opacity-50")
+    const [buttonActive, setButtonActive] = useState(true)
+
+    useEffect(() => {
+        if (email !== "" && password !== "") {
+            setButtonActive(false)
+            setOpacity("")
+        }else{
+            setButtonActive(true)
+            setOpacity("opacity-50")
+        }
+    },[email, password])
+
 
 
     return (
@@ -47,12 +61,12 @@ function Login() {
                     <form onSubmit={handleLogin}>
                         <input placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} className='border block w-64 mx-auto mt-2 text-xs p-1 outline-none' />
                         <input type="password" value={password} placeholder='Password' onChange={(e) => { setPassword(e.target.value) }} className='border block mt-2 w-64 mx-auto text-xs p-1 outline-none' />
-                        <button className='  bg-sky-600 mt-2 w-64 rounded-md text-white text-xs p-1' >Giriş Yap</button>
+                        <button disabled={buttonActive} className={` ${opacity}  bg-sky-600 mt-2 w-64 rounded-md text-white text-xs p-1`}>Giriş Yap</button>
                     </form>
                     <div className='flex items-center justify-center gap-2 text-xs my-auto mt-5 '>
-                        <span className='border w-24'></span>
+                        <span className='border-t-2 w-24'></span>
                         <h6>Yada</h6>
-                        <span className='border w-24'></span>
+                        <span className='border-t-2 w-24'></span>
                     </div>
                     <div className='flex items-center justify-center gap-2 text-xs mt-5 cursor-pointer' >
                         <FaFacebookSquare color='blue' size={20} />
