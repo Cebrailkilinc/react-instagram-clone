@@ -34,7 +34,7 @@ function Register() {
         post,
     } = useContext(FirebaseContext)
 
-  
+  console.log("1")
 
     const navigate = useNavigate()
     const createAccount = (e) => {
