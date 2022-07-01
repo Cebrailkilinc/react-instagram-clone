@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react'
 import { db } from "../firebase"
-import { collection, docs, doc, setDoc, getDocs, onSnapshot, orderBy, where, query } from "firebase/firestore"
+import { collection, onSnapshot, where, query, orderBy } from "firebase/firestore"
 import FirebaseContext from '../Components/constext/FirebaseContext'
 import { IoSettingsOutline } from "react-icons/io5"
 
@@ -16,6 +16,10 @@ function UsersProfile() {
             setUserPost(snapshot.docs.map((doc) => ({ ...doc.data() })))
         })
     }, [])
+
+    console.log(userPost)
+
+
 
 
     return (
@@ -47,7 +51,12 @@ function UsersProfile() {
                 <h1>ETİKETLENENLER</h1>
             </div>
             <div className='flex flex-wrap justify-evenly gap-y-3 mt-5'>
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
+                {
+                    userPost.map((ite, i) => {
+                        return <img className='w-28 sm:w-52' src={ite.image} />
+                    })
+                }
+
                 <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
                 <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
                 <img className='w-28 sm:w-52' src='https://picsum.photos/200' />

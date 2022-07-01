@@ -32,11 +32,8 @@ function Profile() {
 
   } = useContext(FirebaseContext)
 
-  const id = users ? users[0].Nickname : ""
 
 
-
-  // Set the "capital" field of the city 'DC'
 
   // Open dropdown menu
   const [open, setOpen] = useState("hidden")
