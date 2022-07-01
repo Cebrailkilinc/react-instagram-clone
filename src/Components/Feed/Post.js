@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react'
 import Comment from '../Modal/Comment';
 import Options from '../Modal/Options';
 
+import { doc, setDoc, collection, addDoc, arrayUnion, arrayRemove, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase"
+
 //Context connect
 import FirebaseContext from '../constext/FirebaseContext';
 
@@ -32,11 +35,20 @@ function Post({ img, nickName, profileImg, statement }) {
 
 
     // Add comment functions
-    const addComment = (e) => {
+
+    const id = users ? users[0].Nickname : ""
+ 
+
+   const addComment = (e) => {
         e.preventDefault()
-        let newComment = { nickname: nickname, comment: commentValue }
+
+        let newComment = {
+            nickname: nickname,
+            comment: commentValue
+        }
         let arr = commentStorage.concat(newComment)
-        setCommentStorage(arr)
+
+        setCommentStorage(arr)       
         setCommentValue("")
     }
 

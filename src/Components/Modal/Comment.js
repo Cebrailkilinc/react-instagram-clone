@@ -3,7 +3,6 @@ import FirebaseContext from '../constext/FirebaseContext'
 
 // React-Icons
 import { GrClose } from "react-icons/gr"
-import { IoIosImages } from "react-icons/io"
 import { FiMoreHorizontal } from "react-icons/fi"
 import { BiBookmark } from "react-icons/bi"
 import { FaRegComment } from "react-icons/fa";
@@ -21,19 +20,18 @@ function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeBut
                 <div >
                     <GrClose color="grey" className='cursor-pointer absolute top-5 right-5 ' onClick={() => { setCommentShow(false) }} />
                 </div>
-                <div className='bg-white h-5/6 w-4/6 rounded-sm grid grid-cols-4  '>
-                    <div className='col-span-2 grid place-content-center bg-black'>
+                <div className='bg-white h-5/6 w-80 sm:w-4/6 rounded-sm grid grid-cols-4  '>
+                    <div className='col-span-2 hidden md:block place-content-center  bg-black'>
                         <div><img className='max-h-[450px]' src={img} /></div>
                     </div>
-                    <div className='col-span-2'>
+                    <div className='col-span-4 md:col-span-2'>
                         <div className='flex items-center justify-between border-b-2 p-4 cursor-pointer'>
                             <img src={profileImg} className="w-10 h-10 border border-red-500 rounded-full" />
                             <h1 className='flex-1 ml-2 text-xs' >{nickName}</h1>
                             <FiMoreHorizontal onClick={() => setOptionShow(true)} />
                         </div>
                         <div className='items-center p-4 text-xs justify-center'>
-                            <div className='flex items-center gap-3' >
-                                <img src={profileImg} className="w-6 h-6 border border-red-500 rounded-full" />
+                            <div className='flex items-center gap-3'>                                
                                 <p>{statement ? nickName + " " + statement : null }</p>
                             </div>
 
@@ -43,7 +41,7 @@ function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeBut
                                 })
                             }
                         </div>
-                        <div className='fixed bottom-12 border-t ml-2'>
+                        <div className='fixed bottom-20 md:bottom-28 border-t ml-2'>
                             <div className=' flex items-center justify-between  p-4 text-xl'>
                                 <div className='flex items-center cursor-pointer  space-x-3 '>
                                     {likeButton ? <AiOutlineHeart onClick={handleLikeButton} /> : <BsFillHeartFill color='red' onClick={handleLikeButton} />}
@@ -62,7 +60,7 @@ function Comment({ setCommentShow, setOptionShow, img, handleLikeButton, likeBut
                                     <input
                                         type="text"
                                         placeholder='add comment'
-                                        className=' border-none focus:ring-0 outline-none w-72 text-sm '
+                                        className=' border-none focus:ring-0 outline-none w-56 md:w-48 lg:w-80 text-sm '
                                         onChange={(e) => { setCommentValue(e.target.value) }}
                                     />
                                     <button onClick={addComment} className='border-none text-blue-600 text-sm' >Paylaş</button>

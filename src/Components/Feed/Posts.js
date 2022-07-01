@@ -12,6 +12,7 @@ function Posts() {
 
   //Firebase connect and get post datas
   const postCollectionRef = collection(db, "posts")
+  
   const q = query(postCollectionRef, orderBy("time", "desc"))
   useEffect(() => {
     onSnapshot(q, (snapshot) => {

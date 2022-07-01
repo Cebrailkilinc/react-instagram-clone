@@ -36,6 +36,7 @@ function NewPost({ setShow }) {
 
     const [selectedImage, setSelectedImage] = useState();
     const [postImage, setPostImage] = useState("")
+    const [id, setId] = useState("")
 
 
     // Add image from local storage
@@ -53,8 +54,7 @@ function NewPost({ setShow }) {
         setStatement(e.target.value)
     }
 
-
-    //Add New Post 
+    //Add New Post   
     const handleAddImageToFirebase = () => {
         const docRef = addDoc(collection(db, "posts"), {
             nickname: users[0].Nickname,
@@ -65,32 +65,10 @@ function NewPost({ setShow }) {
             time: serverTimestamp()
         });
         setShow(false)
+        console.log(docRef.then(ite => ite.id))
     }
-    // //     try{
-    // //         if(!users[0].Nickname) return console.log(nickname);
 
-    // //     const frankDocRef = doc(db, "posts","wqe" );
-    // //     setDoc(frankDocRef, {
 
-    // //         Name: name,
-    // //         Surname: surname,
-    // //         Nickname: users[0].Nickname,
-    // //         Email: email,
-    // //         Password: password,
-    // //         Post: {
-    // //             image: "ssss",
-    // //             description: "",
-    // //             comment: ""
-    // //         },
-    // //         folow: 0,
-    // //         follower: 0
-
-    // //     });
-    // // }catch(error){
-    // //     return false
-    // // }
-
-    //{image ? <img className='object-center  object-contain' src={image} /> :  <IoIosImages color='grey' size={80} /> }
 
     return (
         <>

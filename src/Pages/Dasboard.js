@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from '../Components/Header/Header'
 import Message from './Message'
 import Feed from '../Components/Feed/Feed'
-import User from './User'
+import UsersProfile from './UsersProfile';
 
 
 function Dasboard({ setLogin }) {
@@ -13,7 +13,7 @@ function Dasboard({ setLogin }) {
             <Routes>
                 <Route path="/*" element={<Feed />} />
                 <Route path="/message" element={<Message />} />
-                <Route path="/user" element={<User/>} />               
+                <Route path="/user" element={<UsersProfile/>} />               
             </Routes>
         </>
     )

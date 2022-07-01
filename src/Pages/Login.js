@@ -6,7 +6,6 @@ import { FaFacebookSquare } from "react-icons/fa"
 import { useEffect } from 'react';
 
 
-
 function Login() {
     const {
         email,
@@ -38,7 +37,7 @@ function Login() {
                 <div className='hidden md:block'>
                     <img className='w-[400px]' src='phones.png' />
                 </div>
-                <div className='border p-5 mt-3' >
+                <div className='border p-5 mt-14 md:mt-3 ' >
                     <img className='mx-auto p-6' src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
                     <form onSubmit={handleLogin}>
                         <input placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} className='border block w-64 mx-auto mt-2 text-xs p-1 outline-none' />

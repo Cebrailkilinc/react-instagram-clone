@@ -23,12 +23,12 @@ export const FirebaseProvider = ({ children }) => {
   const [users, setUsers] = useState(null)
   const [uids, setUid] = useState("")
   const [statement, setStatement] = useState("")
- 
+
 
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
-  
+
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -36,21 +36,23 @@ export const FirebaseProvider = ({ children }) => {
         const user = userCredential.user;
         navigate("/")
         setLogin(true)
-        console.log(user.uid)
+       
 
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
+
         onSnapshot(q, (snapshot) => {
           let userList = [];
           snapshot.docs.forEach((doc) => {
             userList.push(doc.data())
           })
           setUsers(userList)
+          setUid(user.uid)
         })
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log( errorCode + errorMessage)
+        console.log(errorCode + errorMessage)
         alert("Geçersiz Kullanıcı Adı veya Şifre ")
       });
   }
@@ -73,7 +75,7 @@ export const FirebaseProvider = ({ children }) => {
     post,
     handleLogin,
     statement,
-    setStatement,     
+    setStatement,
     users,
     uids,
     login

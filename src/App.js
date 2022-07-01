@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Message from './Pages/Message';
 import Feed from './Components/Feed/Feed';
-import User from './Pages/User';
 import Login from "./Pages/Login"
 import Dasboard from './Pages/Dasboard';
 import { useState } from 'react';

@@ -27,7 +27,7 @@ function Header({ setLogin }) {
 
     return (
         <header className='bg-white shadow-lg sticky top-0 z-50 border-b-1 '>
-            <div className='container mx-auto max-w-2xl flex justify-between py-3'>
+            <div className='container mx-auto max-w-2xl flex items-center justify-between py-3'>
                 {/*LEFT */}
                 <div >
                     <Link to="/" >
@@ -38,7 +38,7 @@ function Header({ setLogin }) {
                 <div>
                     <input
                         placeholder='Ara'
-                        className='border-none focus:ring-0 outline-none bg-gray-200 hidden md:block rounded-md w-60'
+                        className='border-none focus:ring-0 outline-none bg-gray-50 p-1  hidden md:block rounded-md w-60'
                     />
                 </div>
                 {/*RIGHT */}

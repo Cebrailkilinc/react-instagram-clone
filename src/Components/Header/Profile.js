@@ -1,6 +1,8 @@
 import React, { useState, useRef, useContext } from 'react'
 import FirebaseContext from '../constext/FirebaseContext'
 import { Link } from 'react-router-dom'
+import { auth, db } from "../../firebase"
+import { updateDoc, doc } from 'firebase/firestore'
 
 //React Icons
 import { MdBookmarkBorder } from "react-icons/md"
@@ -9,19 +11,39 @@ import { AiOutlineSetting } from "react-icons/ai"
 import { MdOutlineChangeCircle } from "react-icons/md"
 
 
-
-
-
-
 function Profile() {
-  const { setLogin,users} = useContext(FirebaseContext)
- 
+
+  const {
+    handleLogin,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    setError,
+    deneme,
+    nickname,
+    setNickname,
+    name,
+    surname,
+    users,
+    setLogin,
+    uids, statement, setStatement
+
+  } = useContext(FirebaseContext)
+
+  const id = users ? users[0].Nickname : ""
+
+
+
+  // Set the "capital" field of the city 'DC'
+
   // Open dropdown menu
   const [open, setOpen] = useState("hidden")
   const showDropdownMenu = () => {
     setOpen(open === "hidden" ? "visible " : "hidden")
   }
- 
+
   // Logout functions
   const logout = () => {
     setLogin(false)
@@ -39,15 +61,15 @@ function Profile() {
             <BiUserCircle />
             <Link to="/user" ><h6>Profil</h6></Link>
           </div>
-          <div  onClick={showDropdownMenu} className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4'>
+          <div onClick={showDropdownMenu} className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4'>
             <MdBookmarkBorder />
             <h6>Kaydedildi</h6>
           </div>
-          <div  onClick={showDropdownMenu} className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4'>
+          <div onClick={showDropdownMenu} className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4'>
             <AiOutlineSetting />
             <h6>Ayarlar</h6>
           </div>
-          <div  onClick={showDropdownMenu} className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4 '>
+          <div onClick={showDropdownMenu} className='flex items-center cursor-pointer py-1 hover:bg-slate-50  gap-4 '>
             <MdOutlineChangeCircle />
             <h6 >Hesap Değiştir</h6>
           </div>

@@ -23,9 +23,10 @@ function Register() {
         setSurname,
         nickname,
         setNickname,
+        uids
     } = useContext(FirebaseContext)
 
-
+    console.log(uids)
 
     const navigate = useNavigate()
     const createAccount = (e) => {
@@ -65,7 +66,7 @@ function Register() {
     return (
         <div className="grid grid-cols-6 gap-4 text-center ">
             <div className="col-start-2 col-span-4 flex justify-center items-center">
-                <div className='border p-5 mt-3 ' >
+                <div className='border p-5 mt-10 ' >
                     <img className='mx-auto p-6' src='https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png' />
                     <form onSubmit={createAccount}>
                         <input placeholder='Name' value={name} onChange={(e) => { setName(e.target.value) }} className='border block w-64 mx-auto mt-2 text-xs p-1 outline-none' />
