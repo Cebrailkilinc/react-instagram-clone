@@ -50,7 +50,10 @@ function Profile() {
   return (
     <div>
       <div>
-        <img onClick={showDropdownMenu} className='w-6 h-6  rounded-full cursor-pointer ' src={users ? users[0].Photo : ""} />
+        {/* <img onClick={showDropdownMenu} className='w-6 h-6  rounded-full cursor-pointer ' src={users ? users[0].Photo : ""} /> */}
+        <h1 onClick={showDropdownMenu} className='cursor-pointer bg-green-800 text-slate-200 text-sm text-center w-6 h-6 rounded-full m-auto'>{(users ? users[0].Name.toUpperCase().slice(0,1) : "")+(users ? users[0].Surname.toUpperCase().slice(0,1) : "")}</h1>
+               
+        
       </div>
       <div className={`${open} absolute bg-white md:right-20 lg:right-60 right-2 top-10 text-xs border border-solid rounded-md border-gray-200`}>
         <div className='p-3'>

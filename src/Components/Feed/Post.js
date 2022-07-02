@@ -17,7 +17,7 @@ import { FaRegComment } from "react-icons/fa";
 import { FiSend } from "react-icons/fi"
 import { BsFillHeartFill } from "react-icons/bs"
 
-function Post({ img, nickName, profileImg, statement }) {
+function Post({ img, nickName, profileImg, statement, names, surname }) {
     const { name, nickname, users } = useContext(FirebaseContext)
 
     const [showComment, setCommentShow] = useState(false)
@@ -75,8 +75,8 @@ function Post({ img, nickName, profileImg, statement }) {
         <div className='items-center mt-5 border border-solid border-gray-300 bg-white rounded-lg '>
             {/* Header */}
             <div className='flex items-center justify-between p-4'>
-                <img src={profileImg} className="w-10 h-10 border border-red-500 rounded-full" />
-                <h1 className='flex-1 ml-2 text-xs' >{nickName}</h1>
+                {/* <img src={profileImg} className="w-10 h-10 border border-red-500 rounded-full" /> */}
+                <h1 className='cursor-pointer bg-green-800 text-slate-200 text-2xl text-center w-10 h-10 rounded-full '>{(names ? names.toUpperCase().slice(0,1) :  "")+(surname ? surname.toUpperCase().slice(0,1) :  "")}</h1>
                 <FiMoreHorizontal className='cursor-pointer' onClick={openOptions} />
             </div>
             {/* Post img */}

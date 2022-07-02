@@ -26,7 +26,7 @@ function Posts() {
       {/* Story data was used as post data */}
       {
         posts.map((item, i) => {
-          return <Post key={i} name={item.name} img={item.image} statement={item.description} profileImg={item.profileImg} nickName={item.nickname} id={item.id} />
+          return <Post key={i} names={item.name} surname={item.surname}  img={item.image} statement={item.description} profileImg={item.profileImg} nickName={item.nickname} id={item.id} />
         })
       }
     </div>

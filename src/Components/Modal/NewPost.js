@@ -58,6 +58,8 @@ function NewPost({ setShow }) {
     const handleAddImageToFirebase = () => {
         const docRef = addDoc(collection(db, "posts"), {
             nickname: users[0].Nickname,
+            name:users[0].Name,
+            surname:users[0].Surname,
             profileImg: users ? users[0].Photo : "",
             image: postImage,
             description: statement,

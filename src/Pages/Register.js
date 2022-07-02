@@ -43,7 +43,7 @@ function Register() {
                         Nickname: nickname,
                         Email: email,
                         Password: password,
-                        Photo:"https://picsum.photos/seed/picsum/200/300",
+                        Photo:"",
                         Post: {
                             image: "",
                             description: "",

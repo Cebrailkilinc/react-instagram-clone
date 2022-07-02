@@ -6,7 +6,24 @@ import { IoSettingsOutline } from "react-icons/io5"
 
 function UsersProfile() {
 
-    const { users } = useContext(FirebaseContext)
+    const {
+        handleLogin,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        error,
+        setError,
+        deneme,
+        nickname,
+        setNickname,
+        name,
+        surname,
+        users,
+        setLogin,
+        uids, statement, setStatement
+    
+      } = useContext(FirebaseContext)
 
     const [userPost, setUserPost] = useState()
     const postCollectionRef = collection(db, "posts")
@@ -17,16 +34,12 @@ function UsersProfile() {
         })
     }, [])
 
-    console.log(userPost)
-
-
-
-
     return (
         <div className='max-w-2xl m-auto '>
             <div className='flex mt-12 border-b-2 pb-10 '>
-                <div className='profilPhoto flex items-center w-1/3 '>
-                    <img className='w-28 h-28 rounded-full m-auto' src={users[0].Photo} />
+                <div className='profilPhoto flex items-center text-center w-1/3 '>
+                   {/* <img className='w-28 h-28 rounded-full m-auto' src={users[0].Photo} /> */}
+                   <h1 className='bg-green-800 text-slate-200 text-6xl align-middle w-28 h-28 rounded-full m-auto'>{(users ? users[0].Name.toUpperCase().slice(0,1) : "")+(users ? users[0].Surname.toUpperCase().slice(0,1) : "")}</h1>
                 </div>
                 <div className='Yazılar text-sm w-2/3 ml-5'>
                     <div className='flex gap-5 items-center'>
@@ -52,17 +65,12 @@ function UsersProfile() {
             </div>
             <div className='flex flex-wrap justify-evenly gap-y-3 mt-5'>
                 {
-                    userPost.map((ite, i) => {
-                        return <img className='w-28 sm:w-52' src={ite.image} />
+                    userPost ? userPost.map((ite, i) => {
+                        return <img className='w-28 h-28 sm:h-52 sm:w-52 hover:opacity-50' src={ite.image} />
                     })
+                    : ""
                 }
 
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
-                <img className='w-28 sm:w-52' src='https://picsum.photos/200' />
             </div>
         </div>
     )
